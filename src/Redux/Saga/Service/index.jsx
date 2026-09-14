@@ -1,0 +1,115 @@
+//Create Record Function to Call POST API When Record Has Only Text Data
+export async function createRecord(collection, payload) {
+    try {
+        let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/${collection}`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                "authorization": localStorage.getItem("token") ?? import.meta.env.VITE_APP_PUBLIC_TOKEN
+            },
+            body: JSON.stringify(payload)
+        })
+        response = await response.json()
+        return response?.data
+    } catch (error) {
+        console.log(error)
+        return []
+    }
+}
+
+//Create Record Function to Call POST API When Record Has FOrm Data i.e file field
+export async function createMultipartRecord(collection, payload) {
+    try {
+        let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/${collection}`, {
+            method: "POST",
+            headers: {
+
+                "authorization": localStorage.getItem("token") ?? import.meta.env.VITE_APP_PUBLIC_TOKEN
+            },
+            body: payload
+        })
+        response = await response.json()
+        return response?.data
+    } catch (error) {
+        console.log(error)
+        return []
+    }
+}
+
+//get Record Function to Call GET API
+export async function getRecord(collection, payload) {
+    try {
+        let url = `${import.meta.env.VITE_APP_BACKEND_SERVER}/${collection}`
+        if (collection === "cart" || collection === "wishlist" || (collection === "checkout" && localStorage.getItem("role") === "Buyer"))
+            url = `${import.meta.env.VITE_APP_BACKEND_SERVER}/${collection}/user/${localStorage.getItem("userid")}`
+
+        let response = await fetch(url, {
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                "authorization": localStorage.getItem("token") ?? import.meta.env.VITE_APP_PUBLIC_TOKEN
+            }
+        })
+        response = await response.json()
+        return response?.data
+    } catch (error) {
+        console.log(error)
+        return []
+    }
+}
+
+//Update Record Function to Call PUT API When Record Has Only Text Data
+export async function updateRecord(collection, payload) {
+    try {
+        let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/${collection}/${payload._id}`, {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json",
+                "authorization": localStorage.getItem("token") ?? import.meta.env.VITE_APP_PUBLIC_TOKEN
+            },
+            body: JSON.stringify(payload)
+        })
+        response = await response.json()
+        return response?.data
+    } catch (error) {
+        console.log(error)
+        return []
+    }
+}
+
+//Update Record Function to Call PUT API When Record Has FOrm Data i.e file field
+export async function updateMultipartRecord(collection, payload) {
+    try {
+        let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/${collection}/${payload.get("_id")}`, {
+            method: "PUT",
+            headers: {
+
+                "authorization": localStorage.getItem("token") ?? import.meta.env.VITE_APP_PUBLIC_TOKEN
+            },
+            body: payload
+        })
+        response = await response.json()
+        return response?.data
+    } catch (error) {
+        console.log(error)
+        return []
+    }
+}
+
+//Delete Record Function to Call DELETE API When Record Has Only Text Data
+export async function deleteRecord(collection, payload) {
+    try {
+        let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/${collection}/${payload._id}`, {
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json",
+                "authorization": localStorage.getItem("token") ?? import.meta.env.VITE_APP_PUBLIC_TOKEN
+            }
+        })
+        response = await response.json()
+        return response?.data
+    } catch (error) {
+        console.log(error)
+        return []
+    }
+}
