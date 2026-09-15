@@ -57,7 +57,7 @@ import Payment from './Pages/User/Payment'
 
 
 
-
+console.log("API:", import.meta.env.VITE_APP_BACKEND_SERVER);
 
 export default function App() {
   return (
