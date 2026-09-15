@@ -71,7 +71,7 @@ export default function App() {
           <Route path='/product/:_id' element={<Product />} />
           <Route path='/feature' element={<FeaturePage />} />
           <Route path='/faq' element={<FaqPage />} />
-          <Route path='/testimonial' element={<Reviewspage />} />
+          <Route path='/review' element={<Reviewspage />} />
           <Route path='/contactus' element={<ContactUspage />} />
           <Route path='/privacypolicy' element={<PrivacyPolicyPage />} />
           <Route path='/tc' element={<TermsAndConditionPolicyPage />} />

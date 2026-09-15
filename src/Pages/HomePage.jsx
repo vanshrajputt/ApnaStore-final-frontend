@@ -110,7 +110,8 @@ export default function HomePage() {
             <div className="col-lg-6">
               <div className="hero-visual" data-aos="fade-left" data-aos-delay="400">
                 <div className="main-image">
-                  <img src="public/assets/Images/premium_photo-banner.avif" alt="Modern Healthcare Facility" className="img-fluid" />
+                  {/* <img src="public/assets/Images/premium_photo-banner.avif" alt="Modern Healthcare Facility" className="img-fluid" /> */}
+                  <img src="/assets/Images/premium_photo-banner.avif" alt="Modern Healthcare Facility" className="img-fluid" />
                   <div className="floating-card appointment-card">
                     <div className="card-icon">
                       <i className="bi bi-bag-heart-fill"></i>
